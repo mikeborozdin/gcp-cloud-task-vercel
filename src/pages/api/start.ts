@@ -34,12 +34,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  await createHttpTask({
-    assessmentResultId: "Aw8V2PVAWWvb3D_e5DjKi",
-    imageUrl:
-      "https://3qxdwkqnnj0xhcqk.public.blob.vercel-storage.com/bayond-charge-vs-remains-Kr11BX9oaAb5WcQv2rnnHwc0IDQJME.png",
-    assessmentId: "xbCipjeu5YpvFTCx672CQ",
-  });
+  await createHttpTask({ foo: "hello" });
 
-  res.status(200).json({ name: "John Doe" });
+  res.status(204).end();
 }
