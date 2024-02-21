@@ -1,10 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { CloudTasksClient } from "@google-cloud/tasks";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-type Data = {
-  name: string;
-};
 
 const KEY = JSON.parse(process.env.CLOUD_TASKS_SERVICE_ACCOUNT as string);
 
@@ -17,9 +12,6 @@ function createHttpTask(payload: unknown) {
   const queue = "my-queue";
   const location = "us-central1";
   const url = `${process.env.TASK_HANDLER_BASE_URL}/api/process-task`;
-
-  console.log({ url });
-  console.log({ payload });
 
   const parent = client.queuePath(project, location, queue);
 
@@ -40,7 +32,7 @@ function createHttpTask(payload: unknown) {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
   await createHttpTask({
     assessmentResultId: "Aw8V2PVAWWvb3D_e5DjKi",
